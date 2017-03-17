@@ -1,6 +1,6 @@
-EASYCTF-2017
-### Cryptography
-## Flip My Letters 20 point
+#EASYCTF-2017
+## Cryptography
+### Flip My Letters 20 point
 ```
 I dropped my alphabet on its head, can you help me reassemble it? easyctf{r_wlmg_vevm_mvvw_zm_zhxrr_gzyov}
 ```
@@ -11,7 +11,7 @@ abcdefghijklmnopqrstuvwxyz
 zyxwvutsrqponmlkjihgfedcba
 ```
 flag is easyctf{i_dont_even_need_an_ascii_table}
-## Clear and Concise Commentary on Caesar Cipher 20 points
+### Clear and Concise Commentary on Caesar Cipher 20 points
 ```
 RNFLPGS{LBHTBGVG}
 ```
@@ -20,7 +20,7 @@ Use to ROT13
 EASYCTF{YOUGOTIT} use lowercase
 flag is easyctf{yougotit} 
 
-## RSA 1 50 points
+### RSA 1 50 points
 ```
 p: 35266420919404254191518386016025341974633078431265874906340154002614735903544731
 q: 33807892218183588857272342283850192867087438095370793339781097004896897315076507
@@ -46,8 +46,121 @@ print flag
 ```
 
 flag is easyctf{wh3n_y0u_h4ve_p&q_RSA_iz_ez_bf3a54ef}
-### Forensic
-### Web
-### Programing
-### Exploit
-### Revert Engineering
+
+### Let Me Be Frank 75 points
+```
+I was talking to one of my friends but I couldn't quite understand what he was saying. I think it might be important so here it is: Nwh whdjwh qm uepen, T tjb fsmt tixgi jsrsh sigm gs mpzp xwqf iahxpv iw fslkt. pehgpxf{qtextz_glacz_elt_neinrw_qsg_bums_dcp}
+```
+Vigenere:
+We test key [here](http://rumkin.com/tools/cipher/vigenere.php)
+I find the key is: pineapple
+```
+You should be happy, I put some extra words here to make this easier to solve. easyctf{better_thank_the_french_for_this_one}
+```
+Flag is easyctf{better_thank_the_french_for_this_one}
+
+### RSA 2 80 points
+```
+n: 100821463735952707218390829733528491278257
+e: 65537
+c: 12773618100271283204637208433783479711219
+```
+Factor n [here](http://factordb.com/index.php?query=100821463735952707218390829733528491278257)
+```
+p = 217035194916753221149
+q = 464539697234930678693
+```
+```python
+import gmpy
+p = 217035194916753221149
+q = 464539697234930678693
+e = 65537
+c = 12773618100271283204637208433783479711219
+
+n= q*p
+phi = (p-1) * (q-1)
+d = gmpy.invert(e,phi)
+m = hex(pow(c,d,n))[2:]
+flag = m.decode('hex')
+
+print flag
+```
+flag is flag{l0w_n_921d}
+
+### Decode Me 100 points
+```
+Someone I met today told me that they had a perfect encryption method. To prove that there is no such thing, I want you to decrypt this [encrypted flag](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/DecodeMe.txt) he gave me.
+```
+
+Try to base64 decode
+```python
+import base64
+
+f = open("DecodeMe.txt","r")
+m = f.read()
+for i in range(22):
+        m = base64.b64decode(m)
+        if(m[0:7] == 'easyctf'):
+                break
+print m
+```
+flag is easyctf{what_1s_l0v3_bby_don7_hurt_m3}
+
+### Hash On Hash 100 points
+There's a lot of hex strings here. Maybe they're hiding a message? [hexstrings](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/HashOnHash.txt)
+
+One line is a hash a character, use to [MD5](https://hashkiller.co.uk/md5-decrypter.aspx) decode:
+```
+e1671797c52e15f763380b45e841ec32 MD5 : e
+0cc175b9c0f1b6a831c399e269772661 MD5 : a
+03c7c0ace395d80182db07ae2c30f034 MD5 : s
+415290769594460e2e485922904f345d MD5 : y
+4a8a08f09d37b73795649038408b5f33 MD5 : c
+e358efa489f58062f10dd7316b65649e MD5 : t
+8fa14cdd754f91cc6554c9e71929cce7 MD5 : f
+f95b70fdc3088560732a5ac135644506 MD5 : {
+c4ca4238a0b923820dcc509a6f75849b MD5 : 1
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+2510c39011c5be704182423e3a695e91 MD5 : h
+cfcd208495d565ef66e7dff9f98764da MD5 : 0
+83878c91171338902e0fe0fb97a8c47a MD5 : p
+eccbc87e4b5ce2fe28308fd9f2a7baf3 MD5 : 3
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+415290769594460e2e485922904f345d MD5 : y
+cfcd208495d565ef66e7dff9f98764da MD5 : 0
+7b774effe4a349c6dd82ad4f4f21d34c MD5 : u
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+8277e0910d750195b448797616e091ad MD5 : d
+c4ca4238a0b923820dcc509a6f75849b MD5 : 1
+8277e0910d750195b448797616e091ad MD5 : d
+7b8b965ad4bca0e41ab51de7b31363a1 MD5 : n
+8f14e45fceea167a5a36dedd4bea2543 MD5 : 7
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+8277e0910d750195b448797616e091ad MD5 : d
+cfcd208495d565ef66e7dff9f98764da MD5 : 0
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+8f14e45fceea167a5a36dedd4bea2543 MD5 : 7
+2510c39011c5be704182423e3a695e91 MD5 : h
+a87ff679a2f3e71d9181a67b7542122c MD5 : 4
+8f14e45fceea167a5a36dedd4bea2543 MD5 : 7
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+92eb5ffee6ae2fec3ad71c777531578f MD5 : b
+415290769594460e2e485922904f345d MD5 : y
+b14a7b8059d9c055954c92674ce60032 MD5 : _
+2510c39011c5be704182423e3a695e91 MD5 : h
+a87ff679a2f3e71d9181a67b7542122c MD5 : 4
+7b8b965ad4bca0e41ab51de7b31363a1 MD5 : n
+8277e0910d750195b448797616e091ad MD5 : d
+cbb184dd8e05c9709e5dcaedaa0495cf MD5 : }
+```
+
+flag is easyctf{h0p3_y0u_d1dn7_d0_7h47_by_h4nd}
+```python
+-_- i can't code... so f*cking noob!
+``` 
+
+## Forensic
+## Web
+## Programing
+## Exploit
+## Revert Engineering
