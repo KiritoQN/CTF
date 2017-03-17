@@ -1,4 +1,83 @@
 #   EASYCTF 2017
+## (updating)
+## Forensic
+### scisnerof 70 points
+I found weird file! [elif](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/elif)
+
+```python
+print 'scisnerof'[::-1] #forensics
+```
+file elif -> HxD
+```
+m = ['hexa', ....]
+n = m[::-1]
+```
+copy hex (n) -> HxD -> png
+it's a file [png](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/file)
+Flag is easyctf{r3v3r5ed_4ensics}
+
+### Zooooooom 85 points
+[Hekkerman](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/Hekkerman) is looking awfully spooky. That hekker glare could pierce a firewall. What can he see that you can't?
+
+Use to exiftool:
+```bash
+exiftool Hekkerman.jpg
+```
+Have some information:
+```
+Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
+Image Size                      : 905x624
+Thumbnail Image                 : (Binary data 25242 bytes, use -b option to extract)
+```
+Then Thumbnail Image:
+```bash
+exiftool -thumbnailimage -b Hekkerman.jpg > thumb.jpg
+exiftool thumb.jpg #Thumbnail ...
+exiftool -thumbnailimage -b thumb.jpg > thumb1.jpg
+```
+file thumb1.jpg [here](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/thumb1)
+Flag is easyctf{d33p_zo0m_HeKker_2c1ae5}
+
+
+
+## Revert Engineering
+### Phunky Python I 30 points
+The other day we happened upon a dusty old laptop covered in duct tape and surrounded by several papers with notes scrawled all over them. Upon inspection, we found that the laptop contained several python files labeled phunky.
+We've determined that each of the files contains a mini reversing challenge. The first task is simple: Find the value of x such that the program prints out easyctf (make sure it's lowercase!).
+```python
+x = 0 # REDACTED
+digs = [3260918797648513985, 3260918797648513981, 3260918797648513999, 3260918797648514005, 3260918797648513983, 3260918797648514000, 3260918797648513986]
+out = ""
+for letter in reversed(digs):
+    out = chr(letter - x) + out
+print out
+```
+Find x:
+```python
+	#326091879xxxx
+for x in range(7648513800,7648513900):
+    digs = [7648513985, 7648513981, 7648513999, 7648514005, 7648513983, 7648514000, 7648513986]
+    out = ""
+    for letter in reversed(digs):
+        out = chr(letter - x) + out
+    if(out=='easyctf' or out == 'EASYCTF'):
+            print x
+            print out
+            break
+```
+output: 7648513884 with #326091879xxxxxxxxxxx
+Flag is 3260918797648513884
+
+### Useless Python 50 points 
+Boredom took over, so I wrote this python file! I didn't want anyone to see it though because it doesn't actually run, so I used the coolest base-16 encoding to keep it secret. [python](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/UselessPython.txt)
+
+base16 -> print m -> ...
+```
+chr(102)+chr(108)+chr(97)+chr(103)+chr(32)+chr(61)+chr(32)+chr(39)+chr(101)+chr(97)+chr(115)+chr(121)+chr(99)+chr(116)+chr(102)+chr(123)+chr(112)+chr(121)+chr(116)+chr(104)+chr(111)+chr(110)+chr(95)+chr(51)+chr(120)+chr(51)+chr(99)+chr(95)+chr(101)+chr(120)+chr(101)+chr(99)+chr(95)+chr(51)+chr(120)+chr(101)+chr(99)+chr(95)+chr(101)+chr(120)+chr(51)+chr(99)+chr(125)+chr(39)+chr(10)+chr(112)+chr(114)+chr(105)+chr(105)+chr(110)+chr(116)+chr(32)+chr(102)+chr(108)+chr(97)+chr(103)
+```
+output: "flag = 'easyctf{python_3x3c_exec_3xec_ex3c}'\npriint flag"
+Flag is easyctf{python_3x3c_exec_3xec_ex3c}
+
 ## Cryptography
 ### Flip My Letters 20 points
 ```
@@ -88,6 +167,7 @@ print flag
 Flag is flag{l0w_n_921d}
 
 ### Decode Me 100 points
+
 Someone I met today told me that they had a perfect encryption method. To prove that there is no such thing, I want you to decrypt this [encrypted flag](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/DecodeMe.txt) he gave me.
 -------
 
@@ -106,6 +186,7 @@ print m
 Flag is easyctf{what_1s_l0v3_bby_don7_hurt_m3}
 
 ### Hash On Hash 100 points
+
 There's a lot of hex strings here. Maybe they're hiding a message? [hexstrings](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/HashOnHash.txt)
 
 One line is a hash a character, use to [MD5](https://hashkiller.co.uk/md5-decrypter.aspx) decode:
@@ -159,8 +240,9 @@ Flag is easyctf{h0p3_y0u_d1dn7_d0_7h47_by_h4nd}
 -_- i can't code... so f*cking noob!
 ``` 
 ### RSA3 135 points
-We came across another [message](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/HashOnHash.txt/RSA3.txt) that follows the same cryptographic schema as those other RSA messages. Take a look and see if you can crack it.
------
+
+We came across another [message](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/RSA3.txt) that follows the same cryptographic schema as those other RSA messages. Take a look and see if you can crack it.
+----
 
 Same RSA 2...
 ```
@@ -183,13 +265,11 @@ m = hex(pow(c,d,n))[2:]
 flag = m.decode('hex')
 
 print flag
-
 ```
 
 Flag is easyctf{tw0_v3ry_merrry_tw1n_pr1m35!!_417c0d}
 
-## Forensic
 ## Web
 ## Programing
 ## Exploit
-## Revert Engineering
+
