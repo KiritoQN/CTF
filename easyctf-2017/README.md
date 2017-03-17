@@ -17,7 +17,7 @@ it's a file [png](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/file)
 Flag is easyctf{r3v3r5ed_4ensics}
 
 ### Zooooooom 85 points
-[Hekkerman](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/Hekkerman) is looking awfully spooky. That hekker glare could pierce a firewall. What can he see that you can't?
+[Hekkerman](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/hekkerman.jpg) is looking awfully spooky. That hekker glare could pierce a firewall. What can he see that you can't?
 
 Use to exiftool:
 ```bash
@@ -35,8 +35,12 @@ exiftool -thumbnailimage -b Hekkerman.jpg > thumb.jpg
 exiftool thumb.jpg #Thumbnail ...
 exiftool -thumbnailimage -b thumb.jpg > thumb1.jpg
 ```
-file thumb1.jpg [here](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/thumb1)
+file thumb1.jpg [here](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/thumb1.jpg)
 Flag is easyctf{d33p_zo0m_HeKker_2c1ae5}
+
+### Petty Difference 75 points
+
+Flag is easyctf{th1s_m4y_b3_th3_d1ff3r3nc3_y0u_w3r3_l00k1ng_4}
 
 
 
@@ -169,7 +173,6 @@ Flag is flag{l0w_n_921d}
 ### Decode Me 100 points
 
 Someone I met today told me that they had a perfect encryption method. To prove that there is no such thing, I want you to decrypt this [encrypted flag](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/DecodeMe.txt) he gave me.
--------
 
 Try to base64 decode
 ```python
@@ -235,14 +238,13 @@ a87ff679a2f3e71d9181a67b7542122c MD5 : 4
 cbb184dd8e05c9709e5dcaedaa0495cf MD5 : }
 ```
 
-Flag is easyctf{h0p3_y0u_d1dn7_d0_7h47_by_h4nd}
+Flag is easyctf{1_h0p3_y0u_d1dn7_d0_7h47_by_h4nd}
 ```python
 -_- i can't code... so f*cking noob!
 ``` 
 ### RSA3 135 points
 
 We came across another [message](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/RSA3.txt) that follows the same cryptographic schema as those other RSA messages. Take a look and see if you can crack it.
-----
 
 Same RSA 2...
 ```
@@ -250,6 +252,7 @@ p = 3423616853305296708261404925903697485956036650315221001507285374258954087994
 q = 3423616853305296708261404925903697485956036650315221001507285374258954087994492532947084586412780871
 
 ```
+```python
 import gmpy
 
 n = int(0x27335d21ca51432fa000ddf9e81f630314a0ef2e35d81a839584c5a7356b94934630ebfc2ef9c55b111e8c373f2db66ca3be0c0818b1d4eda7d53c1bd0067f66a12897099b5e322d85a8da45b72b828813af23)

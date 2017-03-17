@@ -1,5 +1,7 @@
-CTF and Write-up
+# KiritoQN
+# Team NothingToGlad
 
-Crypto
-Forensic
-Pwn
+- Crypto
+- Forensic
+- Pwn
+- Web
