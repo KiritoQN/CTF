@@ -1,0 +1,53 @@
+EASYCTF-2017
+### Cryptography
+## Flip My Letters 20 point
+```
+I dropped my alphabet on its head, can you help me reassemble it? easyctf{r_wlmg_vevm_mvvw_zm_zhxrr_gzyov}
+```
+
+Have to anphabet
+``` python
+abcdefghijklmnopqrstuvwxyz
+zyxwvutsrqponmlkjihgfedcba
+```
+flag is easyctf{i_dont_even_need_an_ascii_table}
+## Clear and Concise Commentary on Caesar Cipher 20 points
+```
+RNFLPGS{LBHTBGVG}
+```
+
+Use to ROT13
+EASYCTF{YOUGOTIT} use lowercase
+flag is easyctf{yougotit} 
+
+## RSA 1 50 points
+```
+p: 35266420919404254191518386016025341974633078431265874906340154002614735903544731
+q: 33807892218183588857272342283850192867087438095370793339781097004896897315076507
+e: 65537
+c: 1067712451787400803562379425809071898242825569913660069623893262373330718829976387893558829998677398703394375335812975519575680539304905678909564062892506029513
+```
+
+Code python:
+```python
+import gmpy
+p = 35266420919404254191518386016025341974633078431265874906340154002614735903544731
+q = 33807892218183588857272342283850192867087438095370793339781097004896897315076507
+e = 65537
+c = 1067712451787400803562379425809071898242825569913660069623893262373330718829976387893558829998677398703394375335812975519575680539304905678909564062892506029513
+
+n= q*p
+phi = (p-1) * (q-1)
+d = gmpy.invert(e,phi)
+m = hex(pow(c,d,n))[2:]
+flag = m.decode('hex')
+
+print flag
+```
+
+flag is easyctf{wh3n_y0u_h4ve_p&q_RSA_iz_ez_bf3a54ef}
+### Forensic
+### Web
+### Programing
+### Exploit
+### Revert Engineering
