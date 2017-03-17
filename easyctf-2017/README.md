@@ -88,9 +88,8 @@ print flag
 Flag is flag{l0w_n_921d}
 
 ### Decode Me 100 points
-```
 Someone I met today told me that they had a perfect encryption method. To prove that there is no such thing, I want you to decrypt this [encrypted flag](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/DecodeMe.txt) he gave me.
-```
+-------
 
 Try to base64 decode
 ```python
@@ -160,9 +159,9 @@ Flag is easyctf{h0p3_y0u_d1dn7_d0_7h47_by_h4nd}
 -_- i can't code... so f*cking noob!
 ``` 
 ### RSA3 135 points
-```
 We came across another [message](https://github.com/KiritoQN/CTF/tree/master/easyctf-2017/HashOnHash.txt/RSA3.txt) that follows the same cryptographic schema as those other RSA messages. Take a look and see if you can crack it.
-```
+-----
+
 Same RSA 2...
 ```
 p = 3423616853305296708261404925903697485956036650315221001507285374258954087994492532947084586412780869
