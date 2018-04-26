@@ -1,5 +1,24 @@
-### Stack0
+# Stack0
+```c
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
+int main(int argc, char **argv)
+{
+  volatile int modified;
+  char buffer[64];
+
+  modified = 0;
+  gets(buffer);
+
+  if(modified != 0) {
+      printf("you have changed the 'modified' variable\n");
+  } else {
+      printf("Try again?\n");
+  }
+}
+```
 gdb-peda$ pdisass main
 Dump of assembler code for function main:
    0x080483f4 <+0>:     push   ebp
