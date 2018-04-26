@@ -19,6 +19,7 @@ int main(int argc, char **argv)
   }
 }
 ```
+```bash
 gdb-peda$ pdisass main
 Dump of assembler code for function main:
    0x080483f4 <+0>:     push   ebp
@@ -62,3 +63,4 @@ gdb-peda$ x/40wx $esp
 0xffffd520:     0x00000001      0xffffd5b4      0xffffd5bc      0x00000000
 0xffffd530:     0x00000000      0x00000000      0xf7fb5000      0xf7ffdc04
 0xffffd540:     0xf7ffd000      0x00000000      0xf7fb5000      0xf7fb5000
+```
